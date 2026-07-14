@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaboom！主持人畫面</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- connecting -->
+  <div id="screen-boot" class="center">
+    <div class="logo">Ka<span class="boom">boom!</span></div>
+    <div class="tagline">正在建立遊戲房間…</div>
+  </div>
+
+  <!-- lobby: big PIN + joined players -->
+  <div id="screen-lobby" class="center hidden">
+    <div class="logo">Ka<span class="boom">boom!</span></div>
+    <div class="tagline" id="lobby-title"></div>
+    <p style="margin-top:22px;font-size:1.2rem">前往 <b id="join-url"></b> 輸入 PIN 加入：</p>
+    <div class="bigpin" id="big-pin" style="margin-top:12px">------</div>
+    <p class="tagline" style="margin-top:16px"><span id="player-count">0</span> 位玩家已加入</p>
+    <div class="chips" id="player-chips"></div>
+    <p class="muted" style="margin-top:14px;color:rgba(255,255,255,.6)">⚠️ 這個視窗就是遊戲伺服器，整場遊戲請保持開啟</p>
+    <div style="margin-top:20px;display:flex;gap:12px">
+      <button class="btn accent" id="btn-start" disabled>開始遊戲 ▶</button>
+      <button class="btn ghost" id="btn-cancel">取消</button>
+    </div>
+  </div>
+
+  <!-- live question -->
+  <div id="screen-question" class="center hidden">
+    <div class="topbar">
+      <span class="pill" id="q-progress"></span>
+      <span class="pill" id="q-answered">0 人已作答</span>
+    </div>
+    <div class="timer" id="q-timer">--</div>
+    <div class="qtext" id="q-text"></div>
+    <div class="answers" id="q-answers"></div>
+    <div class="timebar"><div id="q-timebar" style="width:100%"></div></div>
+    <div style="margin-top:20px">
+      <button class="btn ghost" id="btn-skip">跳過倒數 ⏭</button>
+    </div>
+  </div>
+
+  <!-- reveal -->
+  <div id="screen-reveal" class="center hidden">
+    <div class="qtext" id="r-text"></div>
+    <div class="dist" id="r-dist"></div>
+    <h2 style="margin-top:26px">🏆 排行榜</h2>
+    <div class="board" id="r-board"></div>
+    <div style="margin-top:24px">
+      <button class="btn accent" id="btn-next">下一題 ▶</button>
+    </div>
+  </div>
+
+  <!-- podium -->
+  <div id="screen-podium" class="center hidden">
+    <div class="logo">🎉 最終結果</div>
+    <div class="podium" id="podium"></div>
+    <div class="board" id="final-board"></div>
+    <div style="margin-top:26px;display:flex;gap:12px">
+      <button class="btn accent" onclick="location.href='admin.html'">回題庫管理</button>
+      <button class="btn ghost" id="btn-close">結束並關閉遊戲</button>
+    </div>
+  </div>
+
+  <div id="screen-error" class="center hidden">
+    <div class="logo">😵</div>
+    <div class="qtext" id="error-text"></div>
+    <a class="btn accent" href="admin.html">回題庫管理</a>
+  </div>
+
+</div>
+<div class="toast" id="toast"></div>
+<script src="js/peerjs.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/store.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/host.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Kaboom！線上互動問答</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- join screen -->
+  <div id="screen-join" class="center">
+    <div class="logo">Ka<span class="boom">boom!</span></div>
+    <div class="tagline">輸入遊戲 PIN，和大家一起搶答！</div>
+    <div class="card">
+      <div class="error" id="join-error"></div>
+      <input type="text" id="pin" inputmode="numeric" maxlength="6" placeholder="遊戲 PIN（6 位數）" autocomplete="off">
+      <input type="text" id="name" maxlength="16" placeholder="你的暱稱" autocomplete="off">
+      <button class="btn accent full" id="btn-join">加入遊戲</button>
+    </div>
+    <p class="subtle" style="margin-top:20px"><a href="admin.html">建立自己的題庫（免費）</a></p>
+  </div>
+
+  <!-- waiting in lobby -->
+  <div id="screen-lobby" class="center hidden">
+    <div class="logo">準備好了！</div>
+    <div class="tagline" id="lobby-title"></div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:1.4rem;font-weight:900" id="lobby-name"></div>
+      <p class="muted" style="margin-top:8px">看看你的名字有沒有出現在大螢幕上，等待主持人開始…</p>
+    </div>
+  </div>
+
+  <!-- answering -->
+  <div id="screen-question" class="center hidden">
+    <div class="topbar">
+      <span class="pill" id="q-progress"></span>
+      <span class="pill" id="q-score">0 分</span>
+    </div>
+    <div class="timer" id="q-timer">--</div>
+    <div class="qtext" id="q-text"></div>
+    <div class="answers" id="q-answers"></div>
+  </div>
+
+  <!-- answered, waiting for others -->
+  <div id="screen-waiting" class="center hidden">
+    <div class="logo">✓</div>
+    <div class="qtext">已送出答案</div>
+    <p class="subtle">等待其他玩家或時間結束…</p>
+  </div>
+
+  <!-- per-question feedback -->
+  <div id="screen-feedback" class="center hidden">
+    <div class="feedback" id="fb-title"></div>
+    <div class="points" id="fb-points"></div>
+    <div class="subtle" id="fb-rank"></div>
+    <div class="subtle" id="fb-streak"></div>
+  </div>
+
+  <!-- final result -->
+  <div id="screen-final" class="center hidden">
+    <div class="logo" id="final-emoji">🏁</div>
+    <div class="qtext" id="final-title"></div>
+    <div class="points" id="final-score"></div>
+    <p class="subtle" style="margin-top:24px"><a href="./">再玩一場</a></p>
+  </div>
+
+</div>
+<div class="toast" id="toast"></div>
+<script src="js/peerjs.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/player.js"></script>
+</body>
+</html>

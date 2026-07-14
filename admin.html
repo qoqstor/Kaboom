@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaboom！題庫管理</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- dashboard -->
+<div id="screen-dash" class="admin-shell">
+  <div class="admin-head">
+    <div class="logo" style="font-size:1.8rem">Ka<span class="boom">boom!</span> 題庫管理</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn accent small" id="btn-new-quiz">＋ 新增題庫</button>
+      <button class="btn ghost small" id="btn-export">匯出</button>
+      <button class="btn ghost small" id="btn-import">匯入</button>
+      <a class="btn ghost small" href="./" style="text-decoration:none">玩家頁</a>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>我的題庫</h2>
+    <p class="muted" style="margin-bottom:8px">題庫儲存在這台裝置的瀏覽器裡。按「🚀 開始遊戲」會開啟主持人大螢幕並產生遊戲 PIN。</p>
+    <div id="quiz-list"></div>
+    <p class="muted" id="quiz-empty" style="padding:12px 4px">還沒有題庫，點「＋ 新增題庫」開始建立。</p>
+  </div>
+  <input type="file" id="import-file" accept="application/json" class="hidden">
+</div>
+
+<!-- editor -->
+<div id="screen-editor" class="admin-shell hidden">
+  <div class="admin-head">
+    <div class="logo" style="font-size:1.8rem" id="editor-title">編輯題庫</div>
+    <button class="btn ghost small" id="btn-back">← 返回列表</button>
+  </div>
+  <div class="panel">
+    <label for="quiz-title">題庫名稱</label>
+    <input type="text" id="quiz-title" maxlength="100" placeholder="例如：期末複習大挑戰" style="margin-top:6px">
+    <div id="questions"></div>
+    <button class="btn ghost" id="btn-add-q" style="color:var(--ink);border-color:#ccc">＋ 新增題目</button>
+    <div class="error" id="editor-error" style="margin-top:12px"></div>
+    <div style="display:flex;gap:10px;margin-top:8px">
+      <button class="btn accent" id="btn-save">💾 儲存題庫</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<template id="tpl-question">
+  <div class="qcard">
+    <div class="qhead">
+      <span class="idx"></span>
+      <div style="display:flex;gap:6px">
+        <button class="btn small ghost" style="color:var(--ink);border-color:#ccc" data-act="up" title="上移">↑</button>
+        <button class="btn small ghost" style="color:var(--ink);border-color:#ccc" data-act="down" title="下移">↓</button>
+        <button class="btn small danger" data-act="del">刪除</button>
+      </div>
+    </div>
+    <input type="text" class="q-text" maxlength="300" placeholder="輸入題目內容…">
+    <div class="q-options"></div>
+    <div class="time-row">
+      <label>作答時間</label>
+      <input type="number" class="q-time" min="5" max="120" value="20"> 秒
+      <span class="muted">（勾選圓鈕代表正確答案）</span>
+    </div>
+  </div>
+</template>
+
+<script src="js/store.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
